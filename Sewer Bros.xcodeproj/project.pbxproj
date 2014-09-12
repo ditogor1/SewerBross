@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57F1421F19C274210075AE7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1421E19C274210075AE7A /* Foundation.framework */; };
+		57F1422119C274210075AE7A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1422019C274210075AE7A /* CoreGraphics.framework */; };
+		57F1422319C274210075AE7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1422219C274210075AE7A /* UIKit.framework */; };
+		57F1422519C274210075AE7A /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1422419C274210075AE7A /* SpriteKit.framework */; };
+		57F1422B19C274210075AE7A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57F1422919C274210075AE7A /* InfoPlist.strings */; };
+		57F1422D19C274210075AE7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1422C19C274210075AE7A /* main.m */; };
+		57F1423119C274210075AE7A /* SKBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1423019C274210075AE7A /* SKBAppDelegate.m */; };
+		57F1423419C274210075AE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F1423219C274210075AE7A /* Main.storyboard */; };
+		57F1423719C274210075AE7A /* SKBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1423619C274210075AE7A /* SKBViewController.m */; };
+		57F1423A19C274210075AE7A /* SKBMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1423919C274210075AE7A /* SKBMyScene.m */; };
+		57F1423C19C274210075AE7A /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F1423B19C274210075AE7A /* Spaceship.png */; };
+		57F1423E19C274210075AE7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57F1423D19C274210075AE7A /* Images.xcassets */; };
+		57F1424519C274210075AE7A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1424419C274210075AE7A /* XCTest.framework */; };
+		57F1424619C274210075AE7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1421E19C274210075AE7A /* Foundation.framework */; };
+		57F1424719C274210075AE7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F1422219C274210075AE7A /* UIKit.framework */; };
+		57F1424F19C274210075AE7A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57F1424D19C274210075AE7A /* InfoPlist.strings */; };
+		57F1425119C274220075AE7A /* Sewer_BrosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1425019C274220075AE7A /* Sewer_BrosTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		57F1424819C274210075AE7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57F1421319C274210075AE7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57F1421A19C274210075AE7A;
+			remoteInfo = "Sewer Bros";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		57F1421B19C274210075AE7A /* Sewer Bros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sewer Bros.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57F1421E19C274210075AE7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		57F1422019C274210075AE7A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		57F1422219C274210075AE7A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		57F1422419C274210075AE7A /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		57F1422819C274210075AE7A /* Sewer Bros-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sewer Bros-Info.plist"; sourceTree = "<group>"; };
+		57F1422A19C274210075AE7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		57F1422C19C274210075AE7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		57F1422E19C274210075AE7A /* Sewer Bros-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sewer Bros-Prefix.pch"; sourceTree = "<group>"; };
+		57F1422F19C274210075AE7A /* SKBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKBAppDelegate.h; sourceTree = "<group>"; };
+		57F1423019C274210075AE7A /* SKBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKBAppDelegate.m; sourceTree = "<group>"; };
+		57F1423319C274210075AE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57F1423519C274210075AE7A /* SKBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKBViewController.h; sourceTree = "<group>"; };
+		57F1423619C274210075AE7A /* SKBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKBViewController.m; sourceTree = "<group>"; };
+		57F1423819C274210075AE7A /* SKBMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKBMyScene.h; sourceTree = "<group>"; };
+		57F1423919C274210075AE7A /* SKBMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKBMyScene.m; sourceTree = "<group>"; };
+		57F1423B19C274210075AE7A /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		57F1423D19C274210075AE7A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		57F1424319C274210075AE7A /* Sewer BrosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sewer BrosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57F1424419C274210075AE7A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		57F1424C19C274210075AE7A /* Sewer BrosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sewer BrosTests-Info.plist"; sourceTree = "<group>"; };
+		57F1424E19C274210075AE7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		57F1425019C274220075AE7A /* Sewer_BrosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sewer_BrosTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		57F1421819C274210075AE7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1422119C274210075AE7A /* CoreGraphics.framework in Frameworks */,
+				57F1422319C274210075AE7A /* UIKit.framework in Frameworks */,
+				57F1422519C274210075AE7A /* SpriteKit.framework in Frameworks */,
+				57F1421F19C274210075AE7A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57F1424019C274210075AE7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1424519C274210075AE7A /* XCTest.framework in Frameworks */,
+				57F1424719C274210075AE7A /* UIKit.framework in Frameworks */,
+				57F1424619C274210075AE7A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57F1421219C274210075AE7A = {
+			isa = PBXGroup;
+			children = (
+				57F1422619C274210075AE7A /* Sewer Bros */,
+				57F1424A19C274210075AE7A /* Sewer BrosTests */,
+				57F1421D19C274210075AE7A /* Frameworks */,
+				57F1421C19C274210075AE7A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		57F1421C19C274210075AE7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57F1421B19C274210075AE7A /* Sewer Bros.app */,
+				57F1424319C274210075AE7A /* Sewer BrosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57F1421D19C274210075AE7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57F1421E19C274210075AE7A /* Foundation.framework */,
+				57F1422019C274210075AE7A /* CoreGraphics.framework */,
+				57F1422219C274210075AE7A /* UIKit.framework */,
+				57F1422419C274210075AE7A /* SpriteKit.framework */,
+				57F1424419C274210075AE7A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57F1422619C274210075AE7A /* Sewer Bros */ = {
+			isa = PBXGroup;
+			children = (
+				57F1422F19C274210075AE7A /* SKBAppDelegate.h */,
+				57F1423019C274210075AE7A /* SKBAppDelegate.m */,
+				57F1423219C274210075AE7A /* Main.storyboard */,
+				57F1423519C274210075AE7A /* SKBViewController.h */,
+				57F1423619C274210075AE7A /* SKBViewController.m */,
+				57F1423819C274210075AE7A /* SKBMyScene.h */,
+				57F1423919C274210075AE7A /* SKBMyScene.m */,
+				57F1423B19C274210075AE7A /* Spaceship.png */,
+				57F1423D19C274210075AE7A /* Images.xcassets */,
+				57F1422719C274210075AE7A /* Supporting Files */,
+			);
+			path = "Sewer Bros";
+			sourceTree = "<group>";
+		};
+		57F1422719C274210075AE7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57F1422819C274210075AE7A /* Sewer Bros-Info.plist */,
+				57F1422919C274210075AE7A /* InfoPlist.strings */,
+				57F1422C19C274210075AE7A /* main.m */,
+				57F1422E19C274210075AE7A /* Sewer Bros-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57F1424A19C274210075AE7A /* Sewer BrosTests */ = {
+			isa = PBXGroup;
+			children = (
+				57F1425019C274220075AE7A /* Sewer_BrosTests.m */,
+				57F1424B19C274210075AE7A /* Supporting Files */,
+			);
+			path = "Sewer BrosTests";
+			sourceTree = "<group>";
+		};
+		57F1424B19C274210075AE7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57F1424C19C274210075AE7A /* Sewer BrosTests-Info.plist */,
+				57F1424D19C274210075AE7A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		57F1421A19C274210075AE7A /* Sewer Bros */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57F1425419C274220075AE7A /* Build configuration list for PBXNativeTarget "Sewer Bros" */;
+			buildPhases = (
+				57F1421719C274210075AE7A /* Sources */,
+				57F1421819C274210075AE7A /* Frameworks */,
+				57F1421919C274210075AE7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sewer Bros";
+			productName = "Sewer Bros";
+			productReference = 57F1421B19C274210075AE7A /* Sewer Bros.app */;
+			productType = "com.apple.product-type.application";
+		};
+		57F1424219C274210075AE7A /* Sewer BrosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57F1425719C274220075AE7A /* Build configuration list for PBXNativeTarget "Sewer BrosTests" */;
+			buildPhases = (
+				57F1423F19C274210075AE7A /* Sources */,
+				57F1424019C274210075AE7A /* Frameworks */,
+				57F1424119C274210075AE7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57F1424919C274210075AE7A /* PBXTargetDependency */,
+			);
+			name = "Sewer BrosTests";
+			productName = "Sewer BrosTests";
+			productReference = 57F1424319C274210075AE7A /* Sewer BrosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		57F1421319C274210075AE7A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SKB;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "victor alejandro reza rodriguez";
+				TargetAttributes = {
+					57F1424219C274210075AE7A = {
+						TestTargetID = 57F1421A19C274210075AE7A;
+					};
+				};
+			};
+			buildConfigurationList = 57F1421619C274210075AE7A /* Build configuration list for PBXProject "Sewer Bros" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 57F1421219C274210075AE7A;
+			productRefGroup = 57F1421C19C274210075AE7A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				57F1421A19C274210075AE7A /* Sewer Bros */,
+				57F1424219C274210075AE7A /* Sewer BrosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57F1421919C274210075AE7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1422B19C274210075AE7A /* InfoPlist.strings in Resources */,
+				57F1423E19C274210075AE7A /* Images.xcassets in Resources */,
+				57F1423C19C274210075AE7A /* Spaceship.png in Resources */,
+				57F1423419C274210075AE7A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57F1424119C274210075AE7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1424F19C274210075AE7A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57F1421719C274210075AE7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1422D19C274210075AE7A /* main.m in Sources */,
+				57F1423119C274210075AE7A /* SKBAppDelegate.m in Sources */,
+				57F1423719C274210075AE7A /* SKBViewController.m in Sources */,
+				57F1423A19C274210075AE7A /* SKBMyScene.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57F1423F19C274210075AE7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57F1425119C274220075AE7A /* Sewer_BrosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		57F1424919C274210075AE7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57F1421A19C274210075AE7A /* Sewer Bros */;
+			targetProxy = 57F1424819C274210075AE7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		57F1422919C274210075AE7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57F1422A19C274210075AE7A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		57F1423219C274210075AE7A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57F1423319C274210075AE7A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		57F1424D19C274210075AE7A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57F1424E19C274210075AE7A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		57F1425219C274220075AE7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		57F1425319C274220075AE7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		57F1425519C274220075AE7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sewer Bros/Sewer Bros-Prefix.pch";
+				INFOPLIST_FILE = "Sewer Bros/Sewer Bros-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		57F1425619C274220075AE7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sewer Bros/Sewer Bros-Prefix.pch";
+				INFOPLIST_FILE = "Sewer Bros/Sewer Bros-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		57F1425819C274220075AE7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sewer Bros.app/Sewer Bros";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sewer Bros/Sewer Bros-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Sewer BrosTests/Sewer BrosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		57F1425919C274220075AE7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sewer Bros.app/Sewer Bros";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sewer Bros/Sewer Bros-Prefix.pch";
+				INFOPLIST_FILE = "Sewer BrosTests/Sewer BrosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		57F1421619C274210075AE7A /* Build configuration list for PBXProject "Sewer Bros" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57F1425219C274220075AE7A /* Debug */,
+				57F1425319C274220075AE7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57F1425419C274220075AE7A /* Build configuration list for PBXNativeTarget "Sewer Bros" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57F1425519C274220075AE7A /* Debug */,
+				57F1425619C274220075AE7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		57F1425719C274220075AE7A /* Build configuration list for PBXNativeTarget "Sewer BrosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57F1425819C274220075AE7A /* Debug */,
+				57F1425919C274220075AE7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 57F1421319C274210075AE7A /* Project object */;
+}
