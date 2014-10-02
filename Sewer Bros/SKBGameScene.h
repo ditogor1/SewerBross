@@ -15,6 +15,7 @@
 #import "SKBScores.h"
 
 
+#define kNumberOfLevelsMax       1
 #define kPlayerLivesMax          3
 
 
@@ -33,6 +34,7 @@
 @property BOOL playerIsDeadFlag;
 @property int playerLivesRemaining;
 @property BOOL gameIsOverFlag, gameIsPaused;
+@property int currentLevel;
 
 
 @property (nonatomic, strong) SKBScores *scoreDisplay;

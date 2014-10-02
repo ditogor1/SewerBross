@@ -113,7 +113,7 @@
 #pragma mark Contact
 
 - (void)ratzKnockedOut:(SKScene *)whichScene{
-    
+
     [self removeAllActions];
     
     [whichScene runAction:_koSound];
@@ -133,12 +133,15 @@
         
     }
     
-    SKAction *knockedOutAnimation = [SKAction animateWithTextures:textureArray timePerFrame:0.2];
+    
+    
+    SKAction *knockedOutAnimation = [SKAction animateWithTextures:textureArray timePerFrame:kTimeKnockedRat];
     SKAction *knockedOutForAwhile = [SKAction repeatAction:knockedOutAnimation count:1];
     
     [self runAction:knockedOutForAwhile
          completion:^{
              
+             NSLog(@"se paro?");
              if (_ratzStatus == SBRatzKOfacingLeft) {
                  [self runLeft];
              }

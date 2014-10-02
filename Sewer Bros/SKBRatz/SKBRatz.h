@@ -19,7 +19,7 @@
 #define kRatzRunningIncrement           40
 #define kRatzKickedIncrement            5
 #define kRatzPointValue                 100
-
+#define kTimeKnockedRat                 0.3
 
 #define kRatzKOSoundFileName            @"EnemyKO.caf"
 #define kRatzCollectedSoundFileName     @"EnemyCollected.caf"

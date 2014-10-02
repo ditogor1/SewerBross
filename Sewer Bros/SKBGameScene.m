@@ -53,8 +53,12 @@
         // add surfaces to screen
         [self createSceneContents];
         
+        
+        // start at level 1
+        _currentLevel = 1;
+        
         // compose cast of characters from propertyList
-        [self loadCastOfCharacters];
+        [self loadCastOfCharacters:_currentLevel];
         
         
     }
@@ -285,7 +289,7 @@
     
 }
 
-- (void)loadCastOfCharacters{
+- (void)loadCastOfCharacters:(int)levelNumber{
     
     // load cast from plist file
     NSString *path = [[NSBundle mainBundle] pathForResource:kCastOfCharactersFileName ofType:@"plist"];
@@ -297,21 +301,38 @@
         
         if (levelDictionary) {
             
-            NSArray *levelOneArray = [levelDictionary valueForKey:@"One"];
+            NSArray *singleLevelArray = [NSArray arrayWithObject:path];
             
-            if (levelOneArray) {
+            // temp object
+            switch (levelNumber) {
+                case 1:
+                    singleLevelArray = [levelDictionary valueForKey:@"One"];
+                    break;
+            
+                case 2:
+                    singleLevelArray = [levelDictionary valueForKey:@"Two"];
+                    break;
+                
+                default:
+                    singleLevelArray = [levelDictionary valueForKey:@"Two"];
+                    break;
+            }
+            
+            //NSArray *levelOneArray = [levelDictionary valueForKey:@"One"];
+            
+            if (singleLevelArray) {
                 
                 NSDictionary *enemyDictionary = nil;
-                NSMutableArray *newTypeArray = [NSMutableArray arrayWithCapacity:[levelOneArray count]];
-                NSMutableArray *newDelayArray = [NSMutableArray arrayWithCapacity:[levelOneArray count]];
-                NSMutableArray *newStartArray = [NSMutableArray arrayWithCapacity:[levelOneArray count]];
+                NSMutableArray *newTypeArray = [NSMutableArray arrayWithCapacity:[singleLevelArray count]];
+                NSMutableArray *newDelayArray = [NSMutableArray arrayWithCapacity:[singleLevelArray count]];
+                NSMutableArray *newStartArray = [NSMutableArray arrayWithCapacity:[singleLevelArray count]];
                 
                 NSNumber *rawType, *rawDelay, *rawStartXindex;
                 int enemyType, spawnDelay, startXindex = 0;
                 
-                for (int index=0; index < [levelOneArray count]; index++) {
+                for (int index=0; index < [singleLevelArray count]; index++) {
                     
-                    enemyDictionary = [levelOneArray objectAtIndex:index];
+                    enemyDictionary = [singleLevelArray objectAtIndex:index];
                     
                     // NSNumbers from dictionary
                     rawType = [enemyDictionary valueForKey:@"Type"];
@@ -340,7 +361,7 @@
                 
             }
             else {
-                NSLog(@"No levelOneArray");
+                NSLog(@"No singleLevelArray");
             }
             
         }
@@ -493,6 +514,13 @@
         // Player reappears at starting location
         _playerSprite = [SKBPlayer initNewPlayer:self startingPoint:CGPointMake(40, 25)];
         [_playerSprite spawnedInScene:self];
+        
+        // Trigger a new level and its cast of characters
+        _currentLevel++;
+        [self loadCastOfCharacters:_currentLevel];
+        _gameIsPaused = NO;
+        _spawnedEnemyCount = 0;
+        _enemyIsSpawningFlag = NO;
         
     }];
 
@@ -843,10 +871,11 @@
                                    // struckLedge check
                                    if ([theRatz.lastKnownContactedLedge isEqualToString:struckLedgeName]) {
                                        
-                                       //NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
+                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
                                        [theRatz ratzKnockedOut:self];
                                    
                                    }
+                                   
         }];
     
     }
