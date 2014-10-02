@@ -36,7 +36,7 @@
 
 
 @property (nonatomic, strong) SKBScores *scoreDisplay;
-@property int playerScore;
+@property int playerScore, highScore;
 
 
 @end

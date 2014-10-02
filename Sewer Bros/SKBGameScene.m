@@ -207,12 +207,16 @@
     [self addChild:pipe];
     
     
+    // read high score from disk (if written there by previous game)
+    NSNumber *theScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+    _highScore = [theScore intValue];
+    
     // Scoring
     SKBScores *sceneScores = [[SKBScores alloc] init];
     [sceneScores createScoreNodes:self];
     _scoreDisplay = sceneScores;
     _playerScore = 0;
-    [_scoreDisplay updateScore:self newScore:_playerScore];
+    [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
     
     
     // Player
@@ -402,6 +406,24 @@
     [self removeAllActions];
     [self removeAllChildren];
     
+    
+    // Handle high scores
+    if (_playerScore > _highScore) {
+        
+        _highScore = _playerScore;
+        
+        NSLog(@"high score: %d", _highScore);
+        [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
+        
+        // write it to disk
+        NSNumber *theScore = [NSNumber numberWithInt:_highScore];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:theScore forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
+    
+    
     SKLabelNode *gameOverText = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     gameOverText.text = @"Game Over";
     gameOverText.fontSize = 60;
@@ -509,7 +531,7 @@
         
         // Score some bonus points
         _playerScore = _playerScore + kCoinPointValue;
-        [_scoreDisplay updateScore:self newScore:_playerScore];
+        [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
         
     }
     
@@ -527,7 +549,7 @@
                 
                 // Score some points
                 _playerScore = _playerScore + kRatzPointValue;
-                [_scoreDisplay updateScore:self newScore:_playerScore];
+                [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
                 
             }
             else if (theRatz.ratzStatus == SBRatzRunningLeft || theRatz.ratzStatus == SBRatzRunningRight) {
@@ -775,7 +797,7 @@
 
     // check for EndOfGame
     if (_gameIsOverFlag) {
-        NSLog(@"update, gameIsOverFlag is TRUE...");
+        //NSLog(@"update, gameIsOverFlag is TRUE...");
     } else if (_playerLivesRemaining == 0) {
         
         NSLog(@"player has no more lives remaining, trigger end of game");

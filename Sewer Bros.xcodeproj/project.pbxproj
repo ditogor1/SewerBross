@@ -105,6 +105,7 @@
 		57F1426E19C395870075AE7A /* SKBPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1426D19C395870075AE7A /* SKBPlayer.m */; };
 		57F1427619C39E6E0075AE7A /* SKBSpriteTextures.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */; };
 		57FEC07619DCD2AE00604464 /* Playerbitten.caf in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07519DCD2AE00604464 /* Playerbitten.caf */; };
+		57FEC07819DCFDD700604464 /* Text_HighScoreHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07719DCFDD700604464 /* Text_HighScoreHeader.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,7 @@
 		57F1427419C39E6E0075AE7A /* SKBSpriteTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBSpriteTextures.h; sourceTree = "<group>"; };
 		57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBSpriteTextures.m; sourceTree = "<group>"; };
 		57FEC07519DCD2AE00604464 /* Playerbitten.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Playerbitten.caf; sourceTree = "<group>"; };
+		57FEC07719DCFDD700604464 /* Text_HighScoreHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text_HighScoreHeader.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,7 @@
 		57616F5819CA8BFF0046B927 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
+				57FEC07719DCFDD700604464 /* Text_HighScoreHeader.png */,
 				57616F5919CA8BFF0046B927 /* Text_Number_0.png */,
 				57616F5A19CA8BFF0046B927 /* Text_Number_1.png */,
 				57616F5B19CA8BFF0046B927 /* Text_Number_2.png */,
@@ -680,6 +683,7 @@
 				57AE60F419CDD64D0020DC6C /* SpawnCoin.caf in Resources */,
 				57616F6419CA8BFF0046B927 /* Text_Number_0.png in Resources */,
 				57FEC07619DCD2AE00604464 /* Playerbitten.caf in Resources */,
+				57FEC07819DCFDD700604464 /* Text_HighScoreHeader.png in Resources */,
 				5766F2CC19D35BEF00C5C35F /* CoinCollected.sks in Resources */,
 				5720B87619C73A2400070CE1 /* Backdrop_568.png in Resources */,
 				5766F2DC19D3684D00C5C35F /* Ratz_KO_L_Hit5.png in Resources */,

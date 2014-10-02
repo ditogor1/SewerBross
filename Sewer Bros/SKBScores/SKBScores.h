@@ -12,6 +12,8 @@
 
 
 #define kTextPlayerHeaderFileName                       @"Text_PlayerScoreHeader.png"
+#define kTextHighHeaderFileName                         @"Text_HighScoreHeader.png"
+
 
 #define kTextNumber0FileName                            @"Text_Number_0.png"
 #define kTextNumber1FileName                            @"Text_Number_1.png"
@@ -39,7 +41,7 @@
 
 
 - (void)createScoreNodes:(SKScene *)whichScene;
-- (void)updateScore:(SKScene *)whichScene newScore:(int)theScore;
+- (void)updateScore:(SKScene *)whichScene newScore:(int)playerScore hiScore:(int)highScore;
 
 
 
