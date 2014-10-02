@@ -117,6 +117,8 @@
     
     [self removeAllActions];
     
+    [whichScene runAction:_koSound];
+    
     NSArray *textureArray = nil;
     
     if (_ratzStatus == SBRatzRunningLeft) {

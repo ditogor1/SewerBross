@@ -15,12 +15,14 @@
 #define kPlayerRunningIncrement                         100
 #define kPlayerSkiddingIncrement                        20
 #define kPlayerJumpingIncrement                         8
+#define kPlayerBittenIncrement                          5
 
 
 #define kPlayerSpawnSoundFileName                       @"SpawnPlayer.caf"
 #define kPlayerRunSoundFileName                         @"Run.caf"
 #define kPlayerSkidSoundFileName                        @"Skid.caf"
 #define kPlayerJumpSoundFileName                        @"Jump.caf"
+#define kPlayerBittenSoundFileName                      @"Playerbitten.caf"
 
 
 
@@ -33,7 +35,8 @@ typedef enum : int { SBPlayerFacingLeft = 0,
                     SBPlayerJumpingLeft,
                     SBPlayerJumpingRight,
                     SBPlayerJumpingUpFacingLeft,
-                    SBPlayerJumpingUpFacingRight
+                    SBPlayerJumpingUpFacingRight,
+                    SBPlayerFalling
 } SBPlayerStatus;
 
 
@@ -44,7 +47,7 @@ typedef enum : int { SBPlayerFacingLeft = 0,
 @property SBPlayerStatus playerStatus;
 
 
-@property (nonatomic, strong) SKAction *spawnSound;
+@property (nonatomic, strong) SKAction *spawnSound, *bittenSound;
 @property (nonatomic, strong) SKAction *runSound, *jumpSound, *skidSound;
 
 
@@ -54,6 +57,8 @@ typedef enum : int { SBPlayerFacingLeft = 0,
 
 - (void)wrapPlayer:(CGPoint)where;
 
+- (void)playerKilled:(SKScene *)whichScene;
+- (void)playerHitWater:(SKScene *)whichScene;
 
 - (void)runRight;
 - (void)runLeft;

@@ -104,6 +104,7 @@
 		57F1426A19C340190075AE7A /* SKBGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1426919C340190075AE7A /* SKBGameScene.m */; };
 		57F1426E19C395870075AE7A /* SKBPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1426D19C395870075AE7A /* SKBPlayer.m */; };
 		57F1427619C39E6E0075AE7A /* SKBSpriteTextures.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */; };
+		57FEC07619DCD2AE00604464 /* Playerbitten.caf in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07519DCD2AE00604464 /* Playerbitten.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +228,7 @@
 		57F1426D19C395870075AE7A /* SKBPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBPlayer.m; sourceTree = "<group>"; };
 		57F1427419C39E6E0075AE7A /* SKBSpriteTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBSpriteTextures.h; sourceTree = "<group>"; };
 		57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBSpriteTextures.m; sourceTree = "<group>"; };
+		57FEC07519DCD2AE00604464 /* Playerbitten.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Playerbitten.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 		57AE60E919CDD64D0020DC6C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				57FEC07519DCD2AE00604464 /* Playerbitten.caf */,
 				5766F2E819D4743700C5C35F /* Splash.caf */,
 				5766F2E219D375CE00C5C35F /* EnemyCollected.caf */,
 				5766F2E319D375CE00C5C35F /* EnemyKO.caf */,
@@ -676,6 +679,7 @@
 				57616F6919CA8BFF0046B927 /* Text_Number_5.png in Resources */,
 				57AE60F419CDD64D0020DC6C /* SpawnCoin.caf in Resources */,
 				57616F6419CA8BFF0046B927 /* Text_Number_0.png in Resources */,
+				57FEC07619DCD2AE00604464 /* Playerbitten.caf in Resources */,
 				5766F2CC19D35BEF00C5C35F /* CoinCollected.sks in Resources */,
 				5720B87619C73A2400070CE1 /* Backdrop_568.png in Resources */,
 				5766F2DC19D3684D00C5C35F /* Ratz_KO_L_Hit5.png in Resources */,

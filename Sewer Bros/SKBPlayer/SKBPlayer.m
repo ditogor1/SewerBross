@@ -61,6 +61,7 @@
     
     // Sounds
     _spawnSound = [SKAction playSoundFileNamed:kPlayerSpawnSoundFileName waitForCompletion:NO];
+    _bittenSound = [SKAction playSoundFileNamed:kPlayerBittenSoundFileName waitForCompletion:NO];
     _runSound = [SKAction playSoundFileNamed:kPlayerRunSoundFileName waitForCompletion:YES];
     _jumpSound = [SKAction playSoundFileNamed:kPlayerJumpSoundFileName waitForCompletion:NO];
     _skidSound = [SKAction playSoundFileNamed:kPlayerSkidSoundFileName waitForCompletion:YES];
@@ -73,6 +74,7 @@
 }
 
 
+
 #pragma mark - Screen wrap
 
 - (void)wrapPlayer:(CGPoint)where
@@ -81,6 +83,49 @@
     self.physicsBody = nil;
     self.position = where;
     self.physicsBody = storePB;
+}
+
+
+
+#pragma mark Contact
+- (void)playerKilled:(SKScene *)whichScene
+{
+    
+    //NSLog(@"Player has died...");
+    [self removeAllActions];
+    
+    // Update status
+    _playerStatus = SBPlayerFalling;
+    
+    // Play sound
+    [whichScene runAction:_bittenSound];
+    
+    // upward impulse applied
+    [self.physicsBody applyImpulse:CGVectorMake(0, kPlayerBittenIncrement)];
+    // While flying upward, wait for a short spell before altering physicsBody
+    SKAction *shortDelay = [SKAction waitForDuration:0.5];
+    
+    [self runAction:shortDelay completion:^{
+        
+        // Make a new physics body that is much, much smaller as to not affec ledges as he falls...
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(1, 1)];
+        
+        self.physicsBody.categoryBitMask = kPlayerCategory;
+        self.physicsBody.collisionBitMask = kWallCategory;
+        self.physicsBody.contactTestBitMask = kWallCategory;
+        self.physicsBody.linearDamping = 1.0;
+        self.physicsBody.allowsRotation = NO;
+        
+    }];
+    
+}
+
+- (void)playerHitWater:(SKScene *)whichScene
+{
+    
+    NSLog(@"Player has fallen and hit the water...");
+    [self removeFromParent];
+    
 }
 
 

@@ -373,18 +373,29 @@
         
         if ([firstBodyName isEqualToString: @"player1"]) {
             
-            if (_playerSprite.position.x < 20) {
+            if (_playerSprite.playerStatus != SBPlayerFalling) {
                 
-                //NSLog(@"player contacted left edge");
-                [_playerSprite wrapPlayer:CGPointMake(self.frame.size.width - 10, _playerSprite.position.y)];
+                //if (_playerSprite.position.x < 20) {
+                if (_playerSprite.position.x < 100) {
+                    //NSLog(@"player contacted left edge");
+                    [_playerSprite wrapPlayer:CGPointMake(self.frame.size.width - 10, _playerSprite.position.y)];
+                    
+                }
+                else {
+                    
+                    //NSLog(@"player contacted right edge");
+                    [_playerSprite wrapPlayer:CGPointMake(10, _playerSprite.position.y)];
+                    
+                }
             
             }
             else {
-            
-                //NSLog(@"player contacted right edge");
-                [_playerSprite wrapPlayer:CGPointMake(10, _playerSprite.position.y)];
-            
+                
+                // contacted bottom wall (has been killed and has fallen)
+                [_playerSprite playerHitWater:self];
+                
             }
+            
         }
     }
     
@@ -416,6 +427,34 @@
         
     }
     
+    // Player / Ratz
+    if (( ((firstBody.categoryBitMask & kPlayerCategory) != 0) && ((secondBody.categoryBitMask & kRatzCategory) != 0) )) {
+        
+        SKBRatz *theRatz = (SKBRatz *)secondBody.node;
+        
+        if (_playerSprite.playerStatus != SBPlayerFalling) {
+            
+            if (theRatz.ratzStatus == SBRatzKOfacingLeft || theRatz.ratzStatus == SBRatzKOfacingRight) {
+                
+                // ratz unconscious so kick 'em off the ledge
+                [theRatz ratzCollected:self];
+                
+                // Score some points
+                _playerScore = _playerScore + kRatzPointValue;
+                [_scoreDisplay updateScore:self newScore:_playerScore];
+                
+            }
+            else if (theRatz.ratzStatus == SBRatzRunningLeft || theRatz.ratzStatus == SBRatzRunningRight) {
+                
+                // oops, player dies
+                [_playerSprite playerKilled:self];
+                
+            }
+            
+        }
+        
+    }
+    
     
     // Ratz / BaseBricks
     if (( ((firstBody.categoryBitMask & kBaseCategory) != 0) && ((secondBody.categoryBitMask & kRatzCategory) != 0) )) {
@@ -425,21 +464,6 @@
         
     }
     
-    // Player / Ratz
-    if (( ((firstBody.categoryBitMask & kPlayerCategory) != 0) && ((secondBody.categoryBitMask & kRatzCategory) != 0) )) {
-        
-        SKBRatz *theRatz = (SKBRatz *)secondBody.node;
-        
-        if (theRatz.ratzStatus == SBRatzKOfacingLeft || theRatz.ratzStatus == SBRatzKOfacingRight) {
-            [theRatz ratzCollected:self];
-        }
-        
-        
-        // Score some points
-        _playerScore = _playerScore + kRatzPointValue;
-        [_scoreDisplay updateScore:self newScore:_playerScore];
-        
-    }
     
     // Ratz / ledges
     if (( ((firstBody.categoryBitMask & kLedgeCategory) != 0) && ((secondBody.categoryBitMask & kRatzCategory) != 0) )) {
