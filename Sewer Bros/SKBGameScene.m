@@ -7,7 +7,7 @@
 //
 
 #import "SKBGameScene.h"
-
+#import "SKBSplashScene.h"
 
 
 
@@ -70,8 +70,10 @@
 - (void)createSceneContents{
 
     // Initialize Enemies & Schedule
+    _gameIsOverFlag = NO;
     _spawnedEnemyCount = 0;
     _enemyIsSpawningFlag = NO;
+    
     
     // brick base
     SKSpriteNode *brickBase = [SKSpriteNode spriteNodeWithImageNamed:@"Base_600"];
@@ -385,6 +387,44 @@
         
     }
 
+}
+
+
+
+#pragma mark End Of Game
+- (void)gameIsOver
+{
+    
+    NSLog(@"Game is over!");
+    
+    _gameIsOverFlag = YES;
+    
+    [self removeAllActions];
+    [self removeAllChildren];
+    
+    SKLabelNode *gameOverText = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    gameOverText.text = @"Game Over";
+    gameOverText.fontSize = 60;
+    gameOverText.xScale = 0.1;
+    gameOverText.yScale = 0.1;
+    gameOverText.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    
+    SKLabelNode *pressAnywhereText = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    pressAnywhereText.text = @"Press anywhere to continue";
+    pressAnywhereText.fontSize = 12;
+    pressAnywhereText.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 100);
+
+    SKAction *zoom = [SKAction scaleTo:1.0 duration:2];
+    SKAction *rotate = [SKAction rotateByAngle:M_PI duration:0.5];
+    // 2*pi = 360deg, pi = 180deg
+    SKAction *rotateAbit = [SKAction repeatAction:rotate count:4];
+    SKAction *group = [SKAction group:@[zoom,rotateAbit]];
+    
+    [gameOverText runAction:group];
+    
+    [self addChild:gameOverText];
+    [self addChild:pressAnywhereText];
+    
 }
 
 
@@ -734,8 +774,13 @@
     /* Called before each frame is rendered */
 
     // check for EndOfGame
-    if (_playerLivesRemaining == 0) {
+    if (_gameIsOverFlag) {
+        NSLog(@"update, gameIsOverFlag is TRUE...");
+    } else if (_playerLivesRemaining == 0) {
+        
         NSLog(@"player has no more lives remaining, trigger end of game");
+        [self gameIsOver];
+        
     }
     else if (_playerIsDeadFlag) {
       
