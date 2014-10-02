@@ -528,7 +528,8 @@
         
         SKBCoin *theCoin = (SKBCoin *)secondBody.node;
         [theCoin coinCollected:self];
-        
+        _activeEnemyCount--;
+        //NSLog(@"--coin MENOS");
         // Score some bonus points
         _playerScore = _playerScore + kCoinPointValue;
         [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
@@ -546,6 +547,8 @@
                 
                 // ratz unconscious so kick 'em off the ledge
                 [theRatz ratzCollected:self];
+                _activeEnemyCount--;
+                //NSLog(@"--rat MENOS");
                 
                 // Score some points
                 _playerScore = _playerScore + kRatzPointValue;
@@ -597,11 +600,13 @@
         
         if (theRatz.ratzStatus != SBRatzKicked) {
             
+            NSInteger widthRat = 12;
+            
             if (theRatz.position.x < 100) {
-                [theRatz wrapRatz:CGPointMake(self.frame.size.width-13, theRatz.position.y)];
+                [theRatz wrapRatz:CGPointMake(self.frame.size.width - widthRat, theRatz.position.y)];
             }
             else {
-                [theRatz wrapRatz:CGPointMake(13, theRatz.position.y)];
+                [theRatz wrapRatz:CGPointMake(widthRat, theRatz.position.y)];
             }
             
         }
@@ -609,7 +614,8 @@
         
             // contacted bottom wall (has been kicked off and has fallen)
             [theRatz ratzHitWater:self];
-            
+//            _activeEnemyCount--;
+//            NSLog(@"--rat MENOS");
         }
         
     }
@@ -686,6 +692,8 @@
         
         SKBCoin *theCoin = (SKBCoin *)secondBody.node;
         [theCoin coinHitPipe];
+        _activeEnemyCount--;
+        //NSLog(@"--coin MENOS");
         
     }
     
@@ -758,9 +766,12 @@
                                    // struckLedge check
                                    if ([theCoin.lastKnownContactedLedge isEqualToString:struckLedgeName]) {
                                        
-                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theCoin.name);
+                                       //NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theCoin.name);
                                        
                                        [theCoin coinCollected:self];
+                                       _activeEnemyCount--;
+                                       NSLog(@"--alguno MENOS");
+                                       
                                    }
                                
         }];
@@ -781,7 +792,7 @@
                                    // struckLedge check
                                    if ([theRatz.lastKnownContactedLedge isEqualToString:struckLedgeName]) {
                                        
-                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
+                                       //NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
                                        [theRatz ratzKnockedOut:self];
                                    
                                    }
@@ -795,9 +806,20 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 
+    //NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d,   _cast_TypeArray: %d", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
+    
+//    if(_myNumero != _activeEnemyCount){
+//        NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d, _cast_TypeArray: %ld", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
+//        _myNumero = _activeEnemyCount;
+//    }
+//    else if (_myNumero <= 1){
+//        NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d, _cast_TypeArray: %ld", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
+//    }
+    
+    
     // check for EndOfGame
     if (_gameIsOverFlag) {
-        //NSLog(@"update, gameIsOverFlag is TRUE...");
+        NSLog(@"update, gameIsOverFlag is TRUE...");
     } else if (_playerLivesRemaining == 0) {
         
         NSLog(@"player has no more lives remaining, trigger end of game");
@@ -820,6 +842,9 @@
             
         }];
         
+    }
+    else if (_activeEnemyCount == 0 && _spawnedEnemyCount == [_cast_TypeArray count]) {
+        NSLog(@"end of level");
     }
     else {
         
@@ -873,6 +898,8 @@
                 // Create & spawn the new Enemy
                 _enemyIsSpawningFlag = NO;
                 _spawnedEnemyCount = _spawnedEnemyCount + 1;
+                _activeEnemyCount++;
+                //NSLog(@"--spawn??");
                 
                 if (castType == SKBEnemyTypeCoin){
                     

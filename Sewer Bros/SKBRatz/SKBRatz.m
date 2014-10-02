@@ -211,7 +211,7 @@
     SKEmitterNode *splash = [NSKeyedUnarchiver unarchiveObjectWithFile:emitterPath];
     splash.position = self.position;
     
-    NSLog(@"splash (%f,%f)", splash.position.x, splash.position.y);
+    //NSLog(@"splash (%f,%f)", splash.position.x, splash.position.y);
     splash.name = @"ratzSplash";
     splash.targetNode = whichScene.scene;
     [whichScene addChild:splash];

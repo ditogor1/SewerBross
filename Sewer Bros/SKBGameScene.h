@@ -28,7 +28,7 @@
 @property (strong, nonatomic) NSArray *cast_TypeArray, *cast_DelayArray, *cast_StartXindexArray;
 
 @property int frameCounter;
-@property int spawnedEnemyCount;
+@property int spawnedEnemyCount, activeEnemyCount;
 @property BOOL enemyIsSpawningFlag;
 @property BOOL playerIsDeadFlag;
 @property int playerLivesRemaining;
