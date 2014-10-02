@@ -62,6 +62,7 @@
     // Sounds
     _spawnSound = [SKAction playSoundFileNamed:kPlayerSpawnSoundFileName waitForCompletion:NO];
     _bittenSound = [SKAction playSoundFileNamed:kPlayerBittenSoundFileName waitForCompletion:NO];
+    _splashSound = [SKAction playSoundFileNamed:kPlayerSplashedSoundFileName waitForCompletion:NO];
     _runSound = [SKAction playSoundFileNamed:kPlayerRunSoundFileName waitForCompletion:YES];
     _jumpSound = [SKAction playSoundFileNamed:kPlayerJumpSoundFileName waitForCompletion:NO];
     _skidSound = [SKAction playSoundFileNamed:kPlayerSkidSoundFileName waitForCompletion:YES];
@@ -123,7 +124,21 @@
 - (void)playerHitWater:(SKScene *)whichScene
 {
     
-    NSLog(@"Player has fallen and hit the water...");
+    //NSLog(@"Player has fallen and hit the water...");
+    
+    // Play sound
+    [whichScene runAction:_splashSound];
+    
+    // splash eye candy
+    NSString *emitterPath = [[NSBundle mainBundle] pathForResource:@"Splashed" ofType:@"sks"];
+    SKEmitterNode *splash = [NSKeyedUnarchiver unarchiveObjectWithFile:emitterPath];
+    splash.position = self.position;
+    //NSLog(@"splash (%f,%f)", splash.position.x, splash.position.y);
+    
+    splash.name = @"playerSplash";
+    splash.targetNode = whichScene.scene;
+    [whichScene addChild:splash];
+    
     [self removeFromParent];
     
 }

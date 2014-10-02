@@ -23,6 +23,7 @@
 #define kPlayerSkidSoundFileName                        @"Skid.caf"
 #define kPlayerJumpSoundFileName                        @"Jump.caf"
 #define kPlayerBittenSoundFileName                      @"Playerbitten.caf"
+#define kPlayerSplashedSoundFileName                    @"Splash.caf"
 
 
 
@@ -47,7 +48,7 @@ typedef enum : int { SBPlayerFacingLeft = 0,
 @property SBPlayerStatus playerStatus;
 
 
-@property (nonatomic, strong) SKAction *spawnSound, *bittenSound;
+@property (nonatomic, strong) SKAction *spawnSound, *bittenSound, *splashSound;
 @property (nonatomic, strong) SKAction *runSound, *jumpSound, *skidSound;
 
 
