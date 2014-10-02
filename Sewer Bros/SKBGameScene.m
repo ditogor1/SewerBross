@@ -806,16 +806,6 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 
-    //NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d,   _cast_TypeArray: %d", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
-    
-//    if(_myNumero != _activeEnemyCount){
-//        NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d, _cast_TypeArray: %ld", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
-//        _myNumero = _activeEnemyCount;
-//    }
-//    else if (_myNumero <= 1){
-//        NSLog(@"_activeEnemyCount: %d,   _spawnedEnemyCount: %d, _cast_TypeArray: %ld", _activeEnemyCount, _spawnedEnemyCount, [_cast_TypeArray count]);
-//    }
-    
     
     // check for EndOfGame
     if (_gameIsOverFlag) {
