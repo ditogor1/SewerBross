@@ -46,7 +46,6 @@
     
     // Sound Effects
     _splashSound = [SKAction playSoundFileNamed:kRatzSplashedSoundFileName waitForCompletion:NO];
-#warning NO se usa _koSound
     _koSound = [SKAction playSoundFileNamed:kRatzKOSoundFileName waitForCompletion:NO];
     _collectedSound = [SKAction playSoundFileNamed:kRatzCollectedSoundFileName waitForCompletion:NO];
     _spawnSound = [SKAction playSoundFileNamed:kRatzSpawnSoundFileName waitForCompletion:NO];

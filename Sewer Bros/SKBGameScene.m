@@ -219,6 +219,7 @@
     
     _playerLivesRemaining = kPlayerLivesMax;
     _playerIsDeadFlag = NO;
+    [self playerLivesDisplay];
     
 }
 
@@ -349,6 +350,45 @@
 
 
 
+#pragma mark Lives Display
+
+- (void)playerLivesDisplay{
+    
+    SKTexture *lifeTexture = [SKTexture textureWithImageNamed:kPlayerStillRightFileName];
+    
+    CGPoint startWhere = CGPointMake(CGRectGetMinX(self.frame) + kScorePlayer1distanceFromLeft + 60,
+                                     CGRectGetMaxY(self.frame) - kScoreDistanceFromTop - 20);
+    
+    // Clear out all life icons first
+    for (int index=1; index <= kPlayerLivesMax; index++) {
+        
+        [self enumerateChildNodesWithName:[NSString stringWithFormat:@"player_lives%d", index]
+                               usingBlock:^(SKNode *node, BOOL *stop) {
+                                   
+                                   *stop = YES;
+                                   [node removeFromParent];
+        }];
+        
+    }
+    
+    
+    // One body icon per life remaining
+    for (int index=1; index <= _playerLivesRemaining; index++) {
+        
+        SKSpriteNode *lifeNode = [SKSpriteNode spriteNodeWithTexture:lifeTexture];
+        lifeNode.name = [NSString stringWithFormat:@"player_lives%d", index];
+        lifeNode.position = CGPointMake(startWhere.x + (kScorePlayer1distanceFromLeft * index), startWhere.y);
+        lifeNode.xScale = 0.5;
+        lifeNode.yScale = 0.5;
+        
+        [self addChild:lifeNode];
+        
+    }
+
+}
+
+
+
 #pragma mark Contact / Collision / Touches
 
 -(void)didBeginContact:(SKPhysicsContact *)contact{
@@ -456,8 +496,11 @@
                 [_playerSprite playerKilled:self];
                 
                 _playerIsDeadFlag = YES;
+                
                 // decrement counter by one
                 _playerLivesRemaining--;
+                
+                [self playerLivesDisplay];
                 
             }
             
