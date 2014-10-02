@@ -15,6 +15,10 @@
 #import "SKBScores.h"
 
 
+#define kPlayerLivesMax          3
+
+
+
 @interface SKBGameScene : SKScene <SKPhysicsContactDelegate>
 
 
@@ -26,6 +30,9 @@
 @property int frameCounter;
 @property int spawnedEnemyCount;
 @property BOOL enemyIsSpawningFlag;
+@property BOOL playerIsDeadFlag;
+@property int playerLivesRemaining;
+
 
 @property (nonatomic, strong) SKBScores *scoreDisplay;
 @property int playerScore;

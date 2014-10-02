@@ -217,6 +217,8 @@
     _playerSprite = [SKBPlayer initNewPlayer:self startingPoint:CGPointMake(40, 25)];
     [_playerSprite spawnedInScene:self];
     
+    _playerLivesRemaining = kPlayerLivesMax;
+    _playerIsDeadFlag = NO;
     
 }
 
@@ -233,36 +235,40 @@
         CGPoint location = [touch locationInNode:self];
         SBPlayerStatus status = _playerSprite.playerStatus;
         
-        if (location.y >= (self.frame.size.height / 2 )) {
-            
-            // user touched upper half of the screen (zero = bottom of screen)
-            if (status != SBPlayerJumpingLeft &&
-                status != SBPlayerJumpingRight &&
-                status != SBPlayerJumpingUpFacingLeft &&
-                status != SBPlayerJumpingUpFacingRight) {
-            
-                [_playerSprite jump];
+        if (_playerSprite.playerStatus != SBPlayerFalling && !_playerIsDeadFlag) {
+        
+            if (location.y >= (self.frame.size.height / 2 )) {
+                
+                // user touched upper half of the screen (zero = bottom of screen)
+                if (status != SBPlayerJumpingLeft &&
+                    status != SBPlayerJumpingRight &&
+                    status != SBPlayerJumpingUpFacingLeft &&
+                    status != SBPlayerJumpingUpFacingRight) {
+                    
+                    [_playerSprite jump];
+                }
+                
             }
-            
-        }
-        else if (location.x <= ( self.frame.size.width / 2 )) {
-            
-            // user touched left side of screen
-            if (status == SBPlayerRunningRight) {
-                [_playerSprite skidRight];
-            } else if (status == SBPlayerFacingLeft || status == SBPlayerFacingRight) {
-                [_playerSprite runLeft];
+            else if (location.x <= ( self.frame.size.width / 2 )) {
+                
+                // user touched left side of screen
+                if (status == SBPlayerRunningRight) {
+                    [_playerSprite skidRight];
+                } else if (status == SBPlayerFacingLeft || status == SBPlayerFacingRight) {
+                    [_playerSprite runLeft];
+                }
+                
             }
-            
-        }
-        else {
-            
-            // user touched right side of screen
-            if (status == SBPlayerRunningLeft) {
-                [_playerSprite skidLeft];
-            }
-            else if (status == SBPlayerFacingLeft || status == SBPlayerFacingRight) {
-                [_playerSprite runRight];
+            else {
+                
+                // user touched right side of screen
+                if (status == SBPlayerRunningLeft) {
+                    [_playerSprite skidLeft];
+                }
+                else if (status == SBPlayerFacingLeft || status == SBPlayerFacingRight) {
+                    [_playerSprite runRight];
+                }
+                
             }
             
         }
@@ -448,6 +454,10 @@
                 
                 // oops, player dies
                 [_playerSprite playerKilled:self];
+                
+                _playerIsDeadFlag = YES;
+                // decrement counter by one
+                _playerLivesRemaining--;
                 
             }
             
@@ -680,72 +690,99 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 
-    //NSLog(@"called");
-    //NSUInteger enemiesCount = 25;
-    
-    if (!_enemyIsSpawningFlag && _spawnedEnemyCount < [_cast_TypeArray count]){
+    // check for EndOfGame
+    if (_playerLivesRemaining == 0) {
+        NSLog(@"player has no more lives remaining, trigger end of game");
+    }
+    else if (_playerIsDeadFlag) {
+      
+        // handle a dead player
+        _playerIsDeadFlag = NO;
         
-        //NSLog(@"enter");
-        //NSUInteger timeToApearEnemy = 2;
-    
+        // resurrect (if applicable) after a short delay
+        SKAction *shortDelay = [SKAction waitForDuration:2];
         
-        _enemyIsSpawningFlag = YES;
-        int castIndex = _spawnedEnemyCount;
-        
-        //NSUInteger scheduledDelay = timeToApearEnemy;
-        int leftSideX = CGRectGetMinX(self.frame) + kEnemySpawnEdgeBufferX;
-        int rightSideX = CGRectGetMaxX(self.frame) - kEnemySpawnEdgeBufferX;
-        int topSideY = CGRectGetMaxY(self.frame) - kEnemySpawnEdgeBufferY;
-        
-        // from castOfCharacters file, the sprite Type
-        NSNumber *theNumber = [_cast_TypeArray objectAtIndex:castIndex];
-        int castType = [theNumber intValue];
-        
-        // from castOfCharacters file, the sprite Delay
-        theNumber = [_cast_DelayArray objectAtIndex:castIndex];
-        int castDelay = [theNumber intValue];
-        
-        // from castOfCharacters file, the sprite startXindex
-        int startX = 0;
-        
-        // determine which side
-        theNumber = [_cast_StartXindexArray objectAtIndex:castIndex];
-        
-        if ([theNumber intValue] == 0){
-            startX = leftSideX;
-        }
-        else{
-            startX = rightSideX;
-        }
-        
-        int startY = topSideY;
-        
-        
-        // begin delay & when completed spawn new enemy
-        SKAction *spacing = [SKAction waitForDuration:castDelay];
-        
-        [self runAction:spacing completion:^{
-            //NSLog(@"waited");
-            // Create & spawn the new Enemy
-            _enemyIsSpawningFlag = NO;
-            _spawnedEnemyCount = _spawnedEnemyCount + 1;
+        [self runAction:shortDelay completion:^{
+            NSLog(@"player resurrection (%d lives remain)", _playerLivesRemaining);
             
-            if (castType == SKBEnemyTypeCoin){
-                
-                SKBCoin *newCoin = [SKBCoin initNewCoin:self startingPoint:CGPointMake(startX, startY) coinIndex:castIndex];
-                [newCoin spawnedInScene:self];
-                
-            }
-            else if (castType == SKBEnemyTypeRatz){
-            
-                SKBRatz *newEnemy = [SKBRatz initNewRatz:self startingPoint:CGPointMake(startX, startY) ratzIndex:castIndex];
-                [newEnemy spawnedInScene:self];
-                
-            }
+            _playerSprite = [SKBPlayer initNewPlayer:self startingPoint:CGPointMake(40, 25)];
+            [_playerSprite spawnedInScene:self];
             
         }];
         
     }
+    else {
+        
+        // game is running
+        
+        
+        // enemy and bonus sprite spawning
+        if (!_enemyIsSpawningFlag && _spawnedEnemyCount < [_cast_TypeArray count]){
+            
+            //NSLog(@"enter");
+            //NSUInteger timeToApearEnemy = 2;
+            
+            
+            _enemyIsSpawningFlag = YES;
+            int castIndex = _spawnedEnemyCount;
+            
+            //NSUInteger scheduledDelay = timeToApearEnemy;
+            int leftSideX = CGRectGetMinX(self.frame) + kEnemySpawnEdgeBufferX;
+            int rightSideX = CGRectGetMaxX(self.frame) - kEnemySpawnEdgeBufferX;
+            int topSideY = CGRectGetMaxY(self.frame) - kEnemySpawnEdgeBufferY;
+            
+            // from castOfCharacters file, the sprite Type
+            NSNumber *theNumber = [_cast_TypeArray objectAtIndex:castIndex];
+            int castType = [theNumber intValue];
+            
+            // from castOfCharacters file, the sprite Delay
+            theNumber = [_cast_DelayArray objectAtIndex:castIndex];
+            int castDelay = [theNumber intValue];
+            
+            // from castOfCharacters file, the sprite startXindex
+            int startX = 0;
+            
+            // determine which side
+            theNumber = [_cast_StartXindexArray objectAtIndex:castIndex];
+            
+            if ([theNumber intValue] == 0){
+                startX = leftSideX;
+            }
+            else{
+                startX = rightSideX;
+            }
+            
+            int startY = topSideY;
+            
+            
+            // begin delay & when completed spawn new enemy
+            SKAction *spacing = [SKAction waitForDuration:castDelay];
+            
+            [self runAction:spacing completion:^{
+                //NSLog(@"waited");
+                // Create & spawn the new Enemy
+                _enemyIsSpawningFlag = NO;
+                _spawnedEnemyCount = _spawnedEnemyCount + 1;
+                
+                if (castType == SKBEnemyTypeCoin){
+                    
+                    SKBCoin *newCoin = [SKBCoin initNewCoin:self startingPoint:CGPointMake(startX, startY) coinIndex:castIndex];
+                    [newCoin spawnedInScene:self];
+                    
+                }
+                else if (castType == SKBEnemyTypeRatz){
+                    
+                    SKBRatz *newEnemy = [SKBRatz initNewRatz:self startingPoint:CGPointMake(startX, startY) ratzIndex:castIndex];
+                    [newEnemy spawnedInScene:self];
+                    
+                }
+                
+            }];
+            
+        }
+        
+    }
+    
     
     // check for stuck enemies every 20 frames
     _frameCounter = _frameCounter + 1;
