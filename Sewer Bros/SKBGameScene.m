@@ -71,6 +71,7 @@
 
     // Initialize Enemies & Schedule
     _gameIsOverFlag = NO;
+    _gameIsPaused = NO;
     _spawnedEnemyCount = 0;
     _enemyIsSpawningFlag = NO;
     
@@ -396,6 +397,7 @@
 
 
 #pragma mark End Of Game
+
 - (void)gameIsOver
 {
     
@@ -450,6 +452,55 @@
 }
 
 
+
+#pragma mark End Of Level
+
+- (void)levelCompleted
+{
+    
+    NSLog(@"Level is completed!");
+    
+    [self removeAllActions];
+    _gameIsPaused = YES;
+    
+    // Remove player sprite from scene
+    [self enumerateChildNodesWithName:[NSString stringWithFormat:@"player1"] usingBlock:^(SKNode *node, BOOL *stop) {
+        *stop = YES;
+        [node removeFromParent];
+    }];
+    
+    // Play sound
+    SKAction *completedSong = [SKAction playSoundFileNamed:@"LevelCompleted.caf" waitForCompletion:NO];
+    [self runAction:completedSong];
+    
+    SKLabelNode *levelText = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    levelText.text = @"Level Completed";
+    levelText.fontSize = 48;
+    levelText.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    
+    SKAction *fadeIn = [SKAction fadeInWithDuration:0.25];
+    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.25];
+    SKAction *sequence = [SKAction sequence:@[fadeIn,fadeOut,fadeIn,fadeOut,
+                                              fadeIn,fadeOut,fadeIn,fadeOut,
+                                              fadeIn,fadeOut,fadeIn,fadeOut]];
+    
+    [self addChild:levelText];
+    
+    [levelText runAction:sequence completion:^{
+    
+        [levelText removeFromParent];
+       
+        // Player reappears at starting location
+        _playerSprite = [SKBPlayer initNewPlayer:self startingPoint:CGPointMake(40, 25)];
+        [_playerSprite spawnedInScene:self];
+        
+    }];
+
+}
+     
+     
+     
+     
 
 #pragma mark Contact / Collision / Touches
 
@@ -801,8 +852,7 @@
     }
     
 }
-    
-    
+
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 
@@ -833,8 +883,14 @@
         }];
         
     }
+    else if (_gameIsPaused) {
+        // do nothing while paused
+    }
     else if (_activeEnemyCount == 0 && _spawnedEnemyCount == [_cast_TypeArray count]) {
+        
         NSLog(@"end of level");
+        [self levelCompleted];
+        
     }
     else {
         

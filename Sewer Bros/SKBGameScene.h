@@ -32,7 +32,7 @@
 @property BOOL enemyIsSpawningFlag;
 @property BOOL playerIsDeadFlag;
 @property int playerLivesRemaining;
-@property BOOL gameIsOverFlag;
+@property BOOL gameIsOverFlag, gameIsPaused;
 
 
 @property (nonatomic, strong) SKBScores *scoreDisplay;

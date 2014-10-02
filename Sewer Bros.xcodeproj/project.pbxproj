@@ -106,6 +106,7 @@
 		57F1427619C39E6E0075AE7A /* SKBSpriteTextures.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */; };
 		57FEC07619DCD2AE00604464 /* Playerbitten.caf in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07519DCD2AE00604464 /* Playerbitten.caf */; };
 		57FEC07819DCFDD700604464 /* Text_HighScoreHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07719DCFDD700604464 /* Text_HighScoreHeader.png */; };
+		57FEC07A19DDE1E000604464 /* LevelCompleted.caf in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC07919DDE1E000604464 /* LevelCompleted.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +232,7 @@
 		57F1427519C39E6E0075AE7A /* SKBSpriteTextures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBSpriteTextures.m; sourceTree = "<group>"; };
 		57FEC07519DCD2AE00604464 /* Playerbitten.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Playerbitten.caf; sourceTree = "<group>"; };
 		57FEC07719DCFDD700604464 /* Text_HighScoreHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text_HighScoreHeader.png; sourceTree = "<group>"; };
+		57FEC07919DDE1E000604464 /* LevelCompleted.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LevelCompleted.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +355,7 @@
 		57AE60E919CDD64D0020DC6C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				57FEC07919DDE1E000604464 /* LevelCompleted.caf */,
 				57FEC07519DCD2AE00604464 /* Playerbitten.caf */,
 				5766F2E819D4743700C5C35F /* Splash.caf */,
 				5766F2E219D375CE00C5C35F /* EnemyCollected.caf */,
@@ -708,6 +711,7 @@
 				5720B89719C932B800070CE1 /* Ratz_Right5.png in Resources */,
 				57F1426619C2784B0075AE7A /* SewerSplash_480.png in Resources */,
 				57616F5719CA78A50046B927 /* CastOfCharacters.plist in Resources */,
+				57FEC07A19DDE1E000604464 /* LevelCompleted.caf in Resources */,
 				57DE656119D31AA100EC3163 /* Grate.png in Resources */,
 				57616F6619CA8BFF0046B927 /* Text_Number_2.png in Resources */,
 				5720B89419C932B800070CE1 /* Ratz_Right2.png in Resources */,
