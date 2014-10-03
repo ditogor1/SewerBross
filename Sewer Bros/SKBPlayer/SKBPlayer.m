@@ -54,7 +54,7 @@
 
 - (void)spawnedInScene:(SKScene *)whichScene
 {
-    
+    NSLog(@"spawnedInScene Player");
     SKBGameScene *theScene = (SKBGameScene *)whichScene;
     _spriteTextures = theScene.spriteTextures;
     

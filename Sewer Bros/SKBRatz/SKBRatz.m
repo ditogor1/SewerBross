@@ -143,7 +143,6 @@
     [self runAction:knockedOutForAwhile
          completion:^{
              
-             NSLog(@"se paro?");
              if (_ratzStatus == SBRatzKOfacingLeft) {
                  [self runLeft];
              }

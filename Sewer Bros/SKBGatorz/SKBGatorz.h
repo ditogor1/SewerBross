@@ -37,7 +37,7 @@ typedef enum : int {
 @interface SKBGatorz : SKSpriteNode
 
 
-@property int gatorzStatus;
+@property int gatorzStatus, hitCount;
 @property int lastKnownXposition, lastKnownYposition;
 @property (nonatomic, strong) NSString *lastKnownContactedLedge;
 @property (nonatomic, strong) SKBSpriteTextures *spriteTextures;

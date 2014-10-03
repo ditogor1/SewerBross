@@ -42,5 +42,7 @@
 @property int playerScore, highScore;
 
 
+@property int myVariable;
+
 
 @end

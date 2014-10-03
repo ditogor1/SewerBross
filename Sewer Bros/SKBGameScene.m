@@ -242,6 +242,21 @@
     
     /* Called when a touch begins */
     
+    if ([touches count] >= 2) {
+        
+        [self enumerateChildNodesWithName:@"player1"
+                               usingBlock:^(SKNode *node, BOOL *stop) {
+                                   
+                                   *stop = YES;
+                                   SKBPlayer *player = (SKBPlayer *)node;
+                                   // struckLedge check
+                                   NSLog(@"player: %@", player);
+                                   NSLog(@"player: %f,   yy: %f", player.position.x, player.position.y);
+                                   
+                               }];
+        
+    }
+    
     for (UITouch *touch in touches) {
         
         CGPoint location = [touch locationInNode:self];
@@ -627,7 +642,6 @@
                 // ratz unconscious so kick 'em off the ledge
                 [theRatz ratzCollected:self];
                 _activeEnemyCount--;
-                //NSLog(@"--rat MENOS");
                 
                 // Score some points
                 _playerScore = _playerScore + kRatzPointValue;
@@ -1035,7 +1049,7 @@
                                    // struckLedge check
                                    if ([theRatz.lastKnownContactedLedge isEqualToString:struckLedgeName]) {
                                        
-                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
+                                       //NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theRatz.name);
                                        [theRatz ratzKnockedOut:self];
                                    
                                    }
@@ -1055,8 +1069,30 @@
                                    
                                    // struckLedge check
                                    if([theGatorz.lastKnownContactedLedge isEqualToString:struckLedgeName]){
-                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theGatorz.name);
-                                       [theGatorz gatorzKnockedOut:self];
+                                       
+                                       //NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theGatorz.name);
+                                       
+                                       if (theGatorz.hitCount == 0) {
+                                       
+                                           theGatorz.hitCount++;
+                                           NSLog(@"%@ has been hit once", theGatorz.name);
+                                           
+                                           // force texture change
+                                           if (theGatorz.gatorzStatus == SBGatorzRunningLeft) {
+                                               [theGatorz runLeft];
+                                           }
+                                           else if (theGatorz.gatorzStatus == SBGatorzRunningRight) {
+                                               [theGatorz runRight];
+                                           }
+                                               
+                                       }
+                                       else if (theGatorz.hitCount == 1) {
+                                           
+                                           theGatorz.hitCount = 0;
+                                           [theGatorz gatorzKnockedOut:self];
+                                           
+                                       }
+                                       
                                    }
                                    
         }];
@@ -1069,18 +1105,23 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 
+    //if (_playerLivesRemaining != _myVariable) {
+        //NSLog(@"_playerLivesRemaining: %d,   _playerIsDeadFlag: %d,   _gameIsOverFlag: %d", _playerLivesRemaining, _playerIsDeadFlag, _gameIsOverFlag);
+      //  _myVariable = _playerLivesRemaining;
+    //}
     
     // check for EndOfGame
     if (_gameIsOverFlag) {
-        //NSLog(@"update, gameIsOverFlag is TRUE...");
-    } else if (_playerLivesRemaining == 0) {
+        NSLog(@"update, gameIsOverFlag is TRUE...");
+    }
+    else if (_playerLivesRemaining == 0) {
         
-        //NSLog(@"player has no more lives remaining, trigger end of game");
+        NSLog(@"player has no more lives remaining, trigger end of game");
         [self gameIsOver];
         
     }
     else if (_playerIsDeadFlag) {
-      
+        NSLog(@"aqui mero");
         // handle a dead player
         _playerIsDeadFlag = NO;
         
@@ -1098,6 +1139,7 @@
     }
     else if (_gameIsPaused) {
         // do nothing while paused
+        NSLog(@"pausado");
     }
     else if (_activeEnemyCount == 0 && _spawnedEnemyCount == [_cast_TypeArray count]) {
         
@@ -1108,7 +1150,7 @@
     else {
         
         // game is running
-        
+       // NSLog(@"running");
         
         // enemy and bonus sprite spawning
         if (!_enemyIsSpawningFlag && _spawnedEnemyCount < [_cast_TypeArray count]){
@@ -1189,8 +1231,8 @@
     // check for stuck enemies every 20 frames
     _frameCounter = _frameCounter + 1;
     
-    if (_frameCounter >=20) {
-        
+    if (_frameCounter >= 10) {
+        //NSLog(@"ultimo");
         _frameCounter = 0;
         
         for (int index = 0; index <= _spawnedEnemyCount; index++) {
