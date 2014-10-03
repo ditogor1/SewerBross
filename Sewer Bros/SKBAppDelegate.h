@@ -20,6 +20,8 @@ static const uint32_t kPipeCategory =           0x1 << 3;
 static const uint32_t kLedgeCategory =          0x1 << 4;
 static const uint32_t kCoinCategory =           0x1 << 5;
 static const uint32_t kRatzCategory =           0x1 << 6;
+static const uint32_t kGatorzCategory =         0x1 << 7;
+
 
 
 #define kEnemySpawnEdgeBufferX                  30
@@ -29,7 +31,8 @@ static const uint32_t kRatzCategory =           0x1 << 6;
 typedef enum : uint8_t {
     
     SKBEnemyTypeCoin = 0,
-    SKBEnemyTypeRatz
+    SKBEnemyTypeRatz,
+    SKBEnemyTypeGatorz
     
 } SKBEnemyTypes;
 

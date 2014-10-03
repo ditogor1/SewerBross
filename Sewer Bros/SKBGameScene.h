@@ -13,11 +13,12 @@
 #import "SKBRatz.h"
 #import "SKBCoin.h"
 #import "SKBScores.h"
+#import "SKBGatorz.h"
 
 
-#define kNumberOfLevelsMax       1
-#define kPlayerLivesMax          3
-
+#define kNumberOfLevelsMax       2
+#define kPlayerLivesMax          6
+#warning Deja de revivir en el segundo nivel cuando todavia tiene una vida
 
 
 @interface SKBGameScene : SKScene <SKPhysicsContactDelegate>

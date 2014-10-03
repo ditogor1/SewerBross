@@ -25,8 +25,10 @@
     ratz.position = location;
     ratz.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ratz.size];
     ratz.physicsBody.categoryBitMask = kRatzCategory;
-    ratz.physicsBody.contactTestBitMask = kBaseCategory | kWallCategory | kLedgeCategory | kPipeCategory | kRatzCategory | kCoinCategory ;
-    ratz.physicsBody.collisionBitMask = kBaseCategory | kWallCategory | kLedgeCategory | kPlayerCategory | kRatzCategory | kCoinCategory ;
+    ratz.physicsBody.contactTestBitMask = kBaseCategory | kWallCategory | kLedgeCategory |
+                                            kPipeCategory | kRatzCategory | kCoinCategory | kGatorzCategory ;
+    ratz.physicsBody.collisionBitMask = kBaseCategory | kWallCategory | kLedgeCategory |
+                                            kPlayerCategory | kRatzCategory | kCoinCategory | kGatorzCategory ;
     ratz.physicsBody.density = 1.0;
     ratz.physicsBody.linearDamping = 0.1;
     ratz.physicsBody.restitution = 0.2;

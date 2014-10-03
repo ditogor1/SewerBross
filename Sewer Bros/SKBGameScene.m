@@ -652,6 +652,37 @@
         
     }
     
+    // Player / Gatorz
+    if (( ((firstBody.categoryBitMask & kPlayerCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        
+        if (_playerSprite.playerStatus != SBPlayerFalling) {
+            
+            if (theGatorz.gatorzStatus == SBGatorzKOfacingLeft || theGatorz.gatorzStatus == SBGatorzKOfacingRight) {
+                
+                // Gatorz unconscious so kick 'em off the ledge
+                [theGatorz gatorzCollected:self];
+                
+                // Score some points
+                _playerScore = _playerScore + kGatorzPointValue;
+                //[_scoreDisplay updateScore:self newScore:_playerScore];
+                [_scoreDisplay updateScore:self newScore:_playerScore hiScore:_highScore];
+                
+            }
+            else if (theGatorz.gatorzStatus == SBGatorzRunningLeft || theGatorz.gatorzStatus == SBGatorzRunningRight) {
+                
+                // oops, player dies
+                [_playerSprite playerKilled:self];
+                _playerLivesRemaining--;   // decrement counter by one
+                
+                [self playerLivesDisplay];
+            }
+        
+        }
+    
+    }
+    
     
     // Ratz / BaseBricks
     if (( ((firstBody.categoryBitMask & kBaseCategory) != 0) && ((secondBody.categoryBitMask & kRatzCategory) != 0) )) {
@@ -735,6 +766,30 @@
         }
         else if (theSecondRatz.ratzStatus == SBRatzRunningRight) {
             [theSecondRatz turnLeft];
+        }
+        
+    }
+    
+    // Ratz / Gatorz
+    if (( ((firstBody.categoryBitMask & kRatzCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0))) {
+        
+        SKBRatz *theFirstRatz = (SKBRatz *)firstBody.node;
+        SKBGatorz *theSecondGatorz = (SKBGatorz *)secondBody.node;
+        
+        //NSLog(@"%@ & %@ have collided...", theFirstRatz.name, theSecondGatorz.name);
+        // cause first Ratz to turn and change directions
+        if (theFirstRatz.ratzStatus == SBRatzRunningLeft) {
+            [theFirstRatz turnRight];
+        }
+        else if (theFirstRatz.ratzStatus == SBRatzRunningRight) {
+            [theFirstRatz turnLeft];
+        }
+        
+        // cause second Gatorz to turn and change directions
+        if (theSecondGatorz.gatorzStatus == SBGatorzRunningLeft) {
+            [theSecondGatorz turnRight];
+        } else if (theSecondGatorz.gatorzStatus == SBGatorzRunningRight) {
+            [theSecondGatorz turnLeft];
         }
         
     }
@@ -830,6 +885,115 @@
         
     }
     
+    // Coin / Gatorz
+    if (( ((firstBody.categoryBitMask & kCoinCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBCoin *theCoin = (SKBCoin *)firstBody.node;
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        //NSLog(@"%@ & %@ have collided...", theCoin.name, theGatorz.name);
+        
+        // cause Coin to turn and change directions
+        if (theCoin.coinStatus == SBCoinRunningLeft) {
+            [theCoin turnRight];
+        }
+        else if (theCoin.coinStatus == SBCoinRunningRight) {
+            [theCoin turnLeft];
+        }
+        
+        // cause Gatorz to turn and change directions
+        if (theGatorz.gatorzStatus == SBGatorzRunningLeft) {
+            [theGatorz turnRight];
+        }
+        else if (theGatorz.gatorzStatus == SBGatorzRunningRight) {
+            [theGatorz turnLeft];
+        }
+        
+    }
+    
+    
+    // Gatorz / BaseBricks
+    if (( ((firstBody.categoryBitMask & kBaseCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        theGatorz.lastKnownContactedLedge = @"";
+        //NSLog(@"x- %f, y- %f", theGatorz.position.x, theGatorz.position.y);
+        
+    }
+    
+    // Gatorz / ledges
+    if (( ((firstBody.categoryBitMask & kLedgeCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        SKNode *theLedge = firstBody.node;
+        //NSLog(@"%@ contacting %@", theGatorz.name, theLedge.name);
+        theGatorz.lastKnownContactedLedge = theLedge.name;
+        
+    }
+    
+    // Gatorz / sideWalls
+    if (( ((firstBody.categoryBitMask & kWallCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        
+        if (theGatorz.gatorzStatus != SBGatorzKicked && theGatorz.position.y > 20){
+            
+            if (theGatorz.position.x < 100) {
+                [theGatorz wrapGatorz:CGPointMake(self.frame.size.width - theGatorz.size.width, theGatorz.position.y)];
+            }
+            else {
+                [theGatorz wrapGatorz:CGPointMake(theGatorz.size.width, theGatorz.position.y)];
+            }
+        
+        }
+        else {
+            
+            // contacted bottom wall (has been kicked off and has fallen)
+            [theGatorz gatorzHitWater:self];
+            _activeEnemyCount--;
+            
+        }
+    
+    }
+    
+    // Gatorz / Pipes
+    if (( ((firstBody.categoryBitMask & kPipeCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theGatorz = (SKBGatorz *)secondBody.node;
+        if (theGatorz.position.x < 100) {
+            [theGatorz gatorzHitLeftPipe:self];
+        }
+        else {
+            [theGatorz gatorzHitRightPipe:self];
+        }
+        
+    }
+    
+    // Gatorz / Gatorz
+    if (( ((firstBody.categoryBitMask & kGatorzCategory) != 0) && ((secondBody.categoryBitMask & kGatorzCategory) != 0) )) {
+        
+        SKBGatorz *theFirstGatorz = (SKBGatorz *)firstBody.node;
+        SKBGatorz *theSecondGatorz = (SKBGatorz *)secondBody.node;
+        
+        //NSLog(@"%@ & %@ have collided...", theFirstGatorz.name, theSecondGatorz.name);
+        
+        // cause first Gatorz to turn and change directions
+        if (theFirstGatorz.gatorzStatus == SBGatorzRunningLeft) {
+            [theFirstGatorz turnRight];
+        }
+        else if (theFirstGatorz.gatorzStatus == SBGatorzRunningRight) {
+            [theFirstGatorz turnLeft];
+        }
+        
+        // cause second Gatorz to turn and change directions
+        if (theSecondGatorz.gatorzStatus == SBGatorzRunningLeft) {
+            [theSecondGatorz turnRight];
+        }
+        else if (theSecondGatorz.gatorzStatus == SBGatorzRunningRight) {
+            [theSecondGatorz turnLeft];
+        }
+        
+    }
+    
 }
 
 -(void)checkForEnemyHits:(NSString *)struckLedgeName{
@@ -880,6 +1044,26 @@
     
     }
     
+    
+    // Gatorz
+    for (int index=0; index <= _spawnedEnemyCount; index++) {
+        
+        [self enumerateChildNodesWithName:[NSString stringWithFormat:@"gatorz%d", index]
+                               usingBlock:^(SKNode *node, BOOL *stop) {
+                                   *stop = YES;
+                                   SKBGatorz *theGatorz = (SKBGatorz *)node;
+                                   
+                                   // struckLedge check
+                                   if([theGatorz.lastKnownContactedLedge isEqualToString:struckLedgeName]){
+                                       NSLog(@"Player hit %@ where %@ is known to be", struckLedgeName, theGatorz.name);
+                                       [theGatorz gatorzKnockedOut:self];
+                                   }
+                                   
+        }];
+        
+    }
+    
+    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -888,10 +1072,10 @@
     
     // check for EndOfGame
     if (_gameIsOverFlag) {
-        NSLog(@"update, gameIsOverFlag is TRUE...");
+        //NSLog(@"update, gameIsOverFlag is TRUE...");
     } else if (_playerLivesRemaining == 0) {
         
-        NSLog(@"player has no more lives remaining, trigger end of game");
+        //NSLog(@"player has no more lives remaining, trigger end of game");
         [self gameIsOver];
         
     }
@@ -988,6 +1172,12 @@
                     [newEnemy spawnedInScene:self];
                     
                 }
+                else if (castType == SKBEnemyTypeGatorz) {
+                    
+                    SKBGatorz *newEnemy = [SKBGatorz initNewGatorz:self startingPoint:CGPointMake(startX, startY) gatorzIndex:castIndex];
+                    [newEnemy spawnedInScene:self];
+                    
+                }
                 
             }];
             
@@ -1066,6 +1256,33 @@
                                        theRatz.lastKnownXposition = currentX;
                                        theRatz.lastKnownYposition = currentY;
                                    }];
+            
+            // Gatorz
+            [self enumerateChildNodesWithName:[NSString stringWithFormat:@"gatorz%d", index]
+                                   usingBlock:^(SKNode *node, BOOL *stop) {
+                                       
+                                       *stop = YES;
+                                       SKBGatorz *theGatorz = (SKBGatorz *)node;
+                                       int currentX = theGatorz.position.x;
+                                       int currentY = theGatorz.position.y;
+                
+                                       if (currentX == theGatorz.lastKnownXposition && currentY == theGatorz.lastKnownYposition) {
+                                           
+                                           //NSLog(@"%@ appears to be stuck...", theGatorz.name);
+                                           if (theGatorz.gatorzStatus == SBGatorzRunningRight) {
+                                               [theGatorz turnLeft];
+                                           }
+                                           else if (theGatorz.gatorzStatus == SBGatorzRunningLeft) {
+                                               [theGatorz turnRight];
+                    
+                                           }
+                                           
+                                       }
+                                       
+                                       theGatorz.lastKnownXposition = currentX;
+                                       theGatorz.lastKnownYposition = currentY;
+                                       
+            }];
             
             
         }

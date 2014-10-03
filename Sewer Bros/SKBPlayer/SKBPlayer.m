@@ -38,8 +38,8 @@
     // physics
     player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:player.size];
     player.physicsBody.categoryBitMask = kPlayerCategory;
-    player.physicsBody.contactTestBitMask = kWallCategory | kLedgeCategory | kCoinCategory | kRatzCategory;
-    player.physicsBody.collisionBitMask = kBaseCategory | kWallCategory | kLedgeCategory | kRatzCategory;
+    player.physicsBody.contactTestBitMask = kWallCategory | kLedgeCategory | kCoinCategory | kRatzCategory | kGatorzCategory ;
+    player.physicsBody.collisionBitMask = kBaseCategory | kWallCategory | kLedgeCategory | kRatzCategory | kGatorzCategory ;
     player.physicsBody.density = 1.0;
     player.physicsBody.linearDamping = 0.1;
     player.physicsBody.restitution = 0.2;

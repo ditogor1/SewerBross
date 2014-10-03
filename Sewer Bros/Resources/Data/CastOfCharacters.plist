@@ -10,15 +10,15 @@
 				<key>Type</key>
 				<integer>1</integer>
 				<key>Delay</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>StartXindex</key>
 				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>Type</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>Delay</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>StartXindex</key>
 				<integer>1</integer>
 			</dict>
@@ -40,7 +40,7 @@
 			</dict>
 			<dict>
 				<key>Type</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>Delay</key>
 				<integer>3</integer>
 				<key>StartXindex</key>
@@ -64,6 +64,148 @@
 				<integer>3</integer>
 				<key>StartXindex</key>
 				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>1</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+		<key>Three</key>
+		<array>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>1</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>3</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+		<key>Four</key>
+		<array>
+			<dict>
+				<key>Type</key>
+				<integer>1</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>1</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>0</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>Type</key>
+				<integer>2</integer>
+				<key>Delay</key>
+				<integer>2</integer>
+				<key>StartXindex</key>
+				<integer>1</integer>
 			</dict>
 		</array>
 	</dict>
