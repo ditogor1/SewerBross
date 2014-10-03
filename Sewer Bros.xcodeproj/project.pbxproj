@@ -142,6 +142,7 @@
 		57FEC0BE19DE1D8C00604464 /* Gatorz_Right_turn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC09C19DE1D8C00604464 /* Gatorz_Right_turn2.png */; };
 		57FEC0BF19DE1D8C00604464 /* Gatorz_Right_turn3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC09D19DE1D8C00604464 /* Gatorz_Right_turn3.png */; };
 		57FEC0C319DE206100604464 /* SKBGatorz.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FEC0C219DE206100604464 /* SKBGatorz.m */; };
+		57FEC0C519DE505200604464 /* Instructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FEC0C419DE505200604464 /* Instructions.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -304,6 +305,7 @@
 		57FEC09D19DE1D8C00604464 /* Gatorz_Right_turn3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gatorz_Right_turn3.png; sourceTree = "<group>"; };
 		57FEC0C119DE206100604464 /* SKBGatorz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBGatorz.h; sourceTree = "<group>"; };
 		57FEC0C219DE206100604464 /* SKBGatorz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBGatorz.m; sourceTree = "<group>"; };
+		57FEC0C419DE505200604464 /* Instructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Instructions.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -599,6 +601,7 @@
 				5720B88319C932B800070CE1 /* Ratz */,
 				5720B87219C73A2400070CE1 /* GameScene */,
 				57F1426B19C392F80075AE7A /* Player */,
+				57FEC0C419DE505200604464 /* Instructions.png */,
 				57F1426019C2784B0075AE7A /* SewerSplash_480.png */,
 				57F1426119C2784B0075AE7A /* SewerSplash_568.png */,
 			);
@@ -838,6 +841,7 @@
 				57FEC0BC19DE1D8C00604464 /* Gatorz_Right_5.png in Resources */,
 				5720B86D19C3F10500070CE1 /* Player_Right_Still.png in Resources */,
 				57AE60F519CDD64D0020DC6C /* SpawnEnemy.caf in Resources */,
+				57FEC0C519DE505200604464 /* Instructions.png in Resources */,
 				5720B89519C932B800070CE1 /* Ratz_Right3.png in Resources */,
 				57FEC0AB19DE1D8C00604464 /* Gatorz_Left_turn1.png in Resources */,
 				5720B87519C73A2400070CE1 /* Backdrop_480.png in Resources */,

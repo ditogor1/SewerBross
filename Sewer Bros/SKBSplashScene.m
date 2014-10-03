@@ -60,27 +60,48 @@
     
     for (UITouch *touch in touches) {
         
-        SKNode *splashNode = [self childNodeWithName:@"splashNode"];
-        SKNode *startNode = [self childNodeWithName:@"startNode"];
+        SKNode *instructionNode = [self childNodeWithName:@"instructionNode"];
         
+        if (instructionNode != nil) {
         
-        if (splashNode != nil) {
-        
-            splashNode.name = nil;
+            // second tap - on to the game
+            // remove instruction sheet
+            [instructionNode removeFromParent];
+            // transition to game scene
             
-            SKAction *zoom = [SKAction scaleTo: 4.0 duration: 1];
-            SKAction *fadeAway = [SKAction fadeOutWithDuration: 1];
-            SKAction *grouped = [SKAction group:@[zoom, fadeAway]];
+            SKNode *splashNode = [self childNodeWithName:@"splashNode"];
+            SKNode *startNode = [self childNodeWithName:@"startNode"];
+        
+        
+            if (splashNode != nil) {
+        
+                splashNode.name = nil;
             
-            [startNode runAction:grouped];
-            [splashNode runAction: grouped completion:^{
+                SKAction *zoom = [SKAction scaleTo: 4.0 duration: 1];
+                SKAction *fadeAway = [SKAction fadeOutWithDuration: 1];
+                SKAction *grouped = [SKAction group:@[zoom, fadeAway]];
+            
+                [startNode runAction:grouped];
+                [splashNode runAction: grouped completion:^{
                 
-                SKBGameScene *nextScene  = [[SKBGameScene alloc] initWithSize:self.size];
-                SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
-                [self.view presentScene:nextScene transition:doors];
+                    SKBGameScene *nextScene  = [[SKBGameScene alloc] initWithSize:self.size];
+                    SKTransition *doors = [SKTransition doorwayWithDuration:0.5];
+                    [self.view presentScene:nextScene transition:doors];
             
-            }];
+                }];
         
+            }
+        
+        }
+        else {
+            // first tap - show instructions
+            SKSpriteNode *instruction = [SKSpriteNode
+                                         spriteNodeWithImageNamed:@"Instructions"];
+            instruction.name = @"instructionNode";
+            instruction.position = CGPointMake(CGRectGetMidX(self.frame),
+                                               CGRectGetMidY(self.frame));
+            [self addChild:instruction];
+            
         }
         
     }

@@ -328,9 +328,18 @@
                     singleLevelArray = [levelDictionary valueForKey:@"Two"];
                     break;
                 
-                default:
-                    singleLevelArray = [levelDictionary valueForKey:@"Two"];
+                case 3:
+                    singleLevelArray = [levelDictionary valueForKey:@"Three"];
                     break;
+                
+                case 4:
+                    singleLevelArray = [levelDictionary valueForKey:@"Four"];
+                    break;
+                
+                default:
+                    singleLevelArray = [levelDictionary valueForKey:@"Four"];
+                    break;
+                    
             }
             
             //NSArray *levelOneArray = [levelDictionary valueForKey:@"One"];
